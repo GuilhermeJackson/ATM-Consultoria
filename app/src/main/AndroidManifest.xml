@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SQLiteTarefaActivity"></activity>
+        <activity android:name="com.example.HTTTPService.MenuCEP"></activity>
+        <activity android:name="com.example.HTTTPService.HTTTPService" />
+        <activity android:name=".SQLiteTarefaActivity" />
         <activity android:name=".SQLiteActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +29,7 @@
         <activity android:name=".ClientesActivity" />
         <activity android:name=".ServicosActivity" />
         <activity android:name=".EmpresaActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

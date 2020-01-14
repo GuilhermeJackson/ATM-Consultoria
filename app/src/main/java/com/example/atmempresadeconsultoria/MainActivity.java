@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView botaoEmpresa, botaoServicos, botaoClientes, botaoContatos;
-    private TextView seekBarProject, putExtra, recycleView, dialog, etGroupRadion, txtToggleButton, txtMusica, txtSharedPrefe, txtArmazenamentoInterno, txtSQLite;
+    private TextView seekBarProject, putExtra, recycleView, dialog, etGroupRadion, txtToggleButton, txtMusica, txtSharedPrefe, txtArmazenamentoInterno, txtSQLite, txtHTTPService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +31,14 @@ public class MainActivity extends AppCompatActivity {
         txtSharedPrefe = findViewById(R.id.txtSharedPrefe);
         txtArmazenamentoInterno = findViewById(R.id.txtArmazenamentoInterno);
         txtSQLite = findViewById(R.id.txtSQLite);
+        txtHTTPService = findViewById(R.id.txtHTTPService);
+
+        txtHTTPService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //startActivity(new Intent((MainActivity.this, MenuCEP)));
+            }
+        });
 
         //zoom(botaoEmpresa);
         slideUp(botaoServicos);
