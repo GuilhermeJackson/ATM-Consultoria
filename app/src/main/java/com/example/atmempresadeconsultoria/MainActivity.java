@@ -10,6 +10,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.HTTTPService.HTTTPService;
+import com.example.HTTTPService.MenuCEP;
+
 public class MainActivity extends AppCompatActivity {
     private ImageView botaoEmpresa, botaoServicos, botaoClientes, botaoContatos;
     private TextView seekBarProject, putExtra, recycleView, dialog, etGroupRadion, txtToggleButton, txtMusica, txtSharedPrefe, txtArmazenamentoInterno, txtSQLite, txtHTTPService;
@@ -33,18 +36,20 @@ public class MainActivity extends AppCompatActivity {
         txtSQLite = findViewById(R.id.txtSQLite);
         txtHTTPService = findViewById(R.id.txtHTTPService);
 
-        txtHTTPService.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //startActivity(new Intent((MainActivity.this, MenuCEP)));
-            }
-        });
+
 
         //zoom(botaoEmpresa);
         slideUp(botaoServicos);
         blink(botaoClientes);
         fade(botaoContatos);
         slidedown(botaoEmpresa);
+
+        txtHTTPService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MenuCEP.class));
+            }
+        });
 
         txtSQLite.setOnClickListener(new View.OnClickListener() {
             @Override

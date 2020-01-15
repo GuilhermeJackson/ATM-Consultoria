@@ -1,19 +1,15 @@
 package com.example.HTTTPService;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.AsyncTask;
-import android.os.Bundle;
-
-import com.example.atmempresadeconsultoria.R;
 import com.google.gson.Gson;
-
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
+
+//parametro do AsyncTask = tipo de informação    /   referente ao progresso da requisição    /   Retorno do consumo do webService
 public class HTTTPService extends AsyncTask<Void, Void , CEP> {
 
     private final String cep;
@@ -27,7 +23,7 @@ public class HTTTPService extends AsyncTask<Void, Void , CEP> {
             URL url = new URL("http://ws.matheuscastiglioni.com.br/ws/cep/find/" + this.cep + "/json");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setRequestProperty("Accept","application/json");      //tipo q o web service deve retornar @(CHAVE, JSON)
+            connection.setRequestProperty("Accept", "application/json");      //tipo q o web service deve retornar @(CHAVE, JSON)
             connection.setConnectTimeout(5000);     //se der mais de 5 seg da o erro de TimeOut
             connection.connect();
 
