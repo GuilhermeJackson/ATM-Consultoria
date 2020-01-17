@@ -1,6 +1,7 @@
 package com.example.atmempresadeconsultoria;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,7 +16,7 @@ import com.example.HTTTPService.MenuCEP;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView botaoEmpresa, botaoServicos, botaoClientes, botaoContatos;
-    private TextView seekBarProject, putExtra, recycleView, dialog, etGroupRadion, txtToggleButton, txtMusica, txtSharedPrefe, txtArmazenamentoInterno, txtSQLite, txtHTTPService;
+    private TextView seekBarProject, putExtra, recycleView, dialog, etGroupRadion, txtToggleButton, txtMusica, txtSharedPrefe, txtArmazenamentoInterno, txtSQLite, txtHTTPService, txtRecyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         txtArmazenamentoInterno = findViewById(R.id.txtArmazenamentoInterno);
         txtSQLite = findViewById(R.id.txtSQLite);
         txtHTTPService = findViewById(R.id.txtHTTPService);
+        txtRecyclerView = findViewById(R.id.txtRecyclerView);
 
 
 
@@ -43,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
         blink(botaoClientes);
         fade(botaoContatos);
         slidedown(botaoEmpresa);
+
+        txtRecyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, com.example.RecycleViewAndJsonParsing.MainJsonParsing.class));
+            }
+        });
 
         txtHTTPService.setOnClickListener(new View.OnClickListener() {
             @Override

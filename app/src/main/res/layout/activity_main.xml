@@ -215,6 +215,19 @@
                     app:layout_constraintHorizontal_bias="0.119"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/txtSQLite"/>
+
+                <TextView
+                    android:id="@+id/txtRecyclerView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RecyclerView - Picasso"
+                    tools:layout_editor_absoluteX="44dp"
+                    tools:layout_editor_absoluteY="821dp"
+                    android:layout_marginTop="40dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.119"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txtHTTPService"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
