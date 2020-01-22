@@ -1,11 +1,18 @@
 package com.example.RecycleViewAndJsonParsing;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.selection.SelectionTracker;
+import androidx.recyclerview.selection.StorageStrategy;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.ActionMode;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,11 +31,16 @@ import org.json.JSONObject;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-public class MainJsonParsing extends AppCompatActivity {
+public class MainJsonParsing extends AppCompatActivity implements ExampleAdapter.OnItemClickListener {
+    public static final String EXTRA_URL = "imageUrl";
+    public static final String EXTRA_CREATOR = "creatorName";
+    public static final String EXTRA_LIKES = "likesCount";
     private ExampleAdapter mExampleAdapter;
     private ArrayList<ExampleIten> mExampleList;
     private RecyclerView mRecyclerView;
     private RequestQueue mRequestQueue;
+    ActionMode actionMode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +56,8 @@ public class MainJsonParsing extends AppCompatActivity {
         parseJson();
     }
 
-    public void parseJson(){
+
+    public void parseJson() {
         String url = "https://pixabay.com/api/?key=5303976-fd6581ad4ac165d1b75cc15b3&q=kitten&image_type=photo&pretty=true";
 
         //JsonObjectRequest pega a URL e retorna no formato Json para o response
@@ -54,7 +67,7 @@ public class MainJsonParsing extends AppCompatActivity {
                 try {
                     //Pega o objeto "hits" q contem um array de objetos(com suas caracteristicas user, webformatURL e likes)
                     JSONArray jsonArray = response.getJSONArray("hits");
-                    for(int i = 0; i < jsonArray.length();i++){
+                    for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject hit = jsonArray.getJSONObject(i);    //Objeto Json "hit" recebe os objetos da lista (um por um)
 
                         //Coleta as informações das caracteristicas do objeto
@@ -67,6 +80,8 @@ public class MainJsonParsing extends AppCompatActivity {
                     }
                     mExampleAdapter = new ExampleAdapter(MainJsonParsing.this, mExampleList);
                     mRecyclerView.setAdapter(mExampleAdapter);
+
+                    mExampleAdapter.setOnItemClickListiner(MainJsonParsing.this);
 
                     mExampleAdapter.notifyDataSetChanged();
 
@@ -83,4 +98,17 @@ public class MainJsonParsing extends AppCompatActivity {
 
         mRequestQueue.add(jsonObjectRequest);
     }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent detailItent = new Intent(this, DetailActivity.class);
+        ExampleIten clikedItem = mExampleList.get(position);
+
+        detailItent.putExtra(EXTRA_URL, clikedItem.getmImageURL());
+        detailItent.putExtra(EXTRA_CREATOR, clikedItem.getmCreator());
+        detailItent.putExtra(EXTRA_LIKES, clikedItem.getmLikes());
+
+        startActivity(detailItent);
+    }
+
 }

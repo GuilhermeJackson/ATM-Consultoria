@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,13 +23,24 @@ import java.util.ArrayList;
 //6 - Criar os metodos  onCreateViewHolder / onBindViewHolder / getItemCount
 public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder> {
     //4 - Instancia o que vai ser usado no RecycleView.Adapter. Context e ArrayList do tipo do cardView
+    private boolean insercao = false;
     private Context mContext;
     private ArrayList<ExampleIten> mExampleItem;
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListiner(OnItemClickListener listener) {
+        mListener = listener;
+    }
 
     //5 - Criando o construtor
     public ExampleAdapter(Context context, ArrayList<ExampleIten> ExampleItem) {
         mContext = context;
         mExampleItem = ExampleItem;
+
     }
 
     @NonNull
@@ -61,7 +74,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     }
 
 
-    public class ExampleViewHolder extends RecyclerView.ViewHolder{
+    public class ExampleViewHolder extends RecyclerView.ViewHolder {
         //2 - Aqui é intanciado as informações do layout do cardView
         public ImageView mImageView;
         public TextView mTextViewCreator;
@@ -74,6 +87,30 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
             mTextViewCreator = itemView.findViewById(R.id.text_view_creator);
             mTextViewLikes = itemView.findViewById(R.id.text_view_likes);
 
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    insercao = true;
+                    return false;
+                }
+            });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (insercao) {
+                        Toast.makeText(mContext, "Inserção", Toast.LENGTH_SHORT).show();
+                    } else {
+                        if (mListener != null) {
+                            int position = getAdapterPosition();
+                            if (position != RecyclerView.NO_POSITION) {
+                                mListener.onItemClick(position);
+                            }
+                        }
+                    }
+                }
+            });
         }
     }
+
 }

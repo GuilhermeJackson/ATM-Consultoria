@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.atmempresadeconsultoria">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,11 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.RecycleViewAndJsonParsing.MainJsonParsing"></activity>
+        <activity android:name="com.example.RecycleViewAndJsonParsing.DetailActivity"></activity>
+        <activity android:name="com.example.RecycleViewAndJsonParsing.FavoritosTela" />
+        <activity android:name="com.example.RecycleViewAndJsonParsing.MainJsonParsing">
+
+        </activity>
         <activity android:name="com.example.HTTTPService.MenuCEP" />
         <activity android:name="com.example.HTTTPService.HTTTPService" />
         <activity android:name=".SQLiteTarefaActivity" />
-        <activity android:name=".SQLiteActivity"></activity>
+        <activity android:name=".SQLiteActivity" />
         <activity android:name=".ArmazenamentoInternoActivity" />
         <activity android:name=".SharedPreferencesActivity" />
         <activity android:name=".MusicaPlayActivity" />
@@ -30,7 +33,6 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
